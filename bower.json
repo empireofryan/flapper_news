@@ -1,0 +1,22 @@
+{
+  "name": "flapper_news",
+  "homepage": "https://github.com/empireofryan/flapper_news",
+  "authors": [
+    "empireofryan <rjohnson2001@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.7",
+    "angular-ui-router": "^0.3.1",
+    "bootstrap": "^3.3.6"
+  }
+}
