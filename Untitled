@@ -1,0 +1,12 @@
+function return 2nd largest item list
+
+[1, 4, 7, 10].max
+
+def max(list)
+  list
+  list.each do |l|
+    max_so_far = l.first
+    l > l
+    l
+  end
+end

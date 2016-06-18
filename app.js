@@ -1,7 +1,44 @@
-angular.module('flapperNews', [])
+angular.module('flapperNews', ['ui.router'])
+.config([
+  '$stateProvider',
+  '$urlRouterProvider',
+  function($stateProvider, $urlRouterProvider) {
+
+    $stateProvider
+      .state('home', {
+        url: '/home',
+        templateUrl: '/home.html',
+        controller: 'MainCtrl'
+      });
+
+      $stateProvider
+      .state('posts', {
+        url: '/posts/{id}',
+        templateUrl: '/posts.html',
+        controller: 'PostsCtrl'
+      });
+
+    $urlRouterProvider.otherwise('home');
+  }
+])
+.factory('posts', [function(){
+  var o = {
+    posts: []
+  };
+  return o;
+}])
+.controller('PostsCtrl', [
+  '$scope',
+  '$stateParams',
+  'posts',
+  function($scope, $stateParams, posts){
+  }
+])
 .controller('MainCtrl', [
   '$scope',
-  function($scope){
+  'posts',
+  function($scope, posts){
+    $scope.posts = posts.posts;
     $scope.test = 'Hello world!';
     $scope.posts = [
       {title: 'post 1', upvotes: 5},
@@ -11,7 +48,17 @@ angular.module('flapperNews', [])
       {title: 'post 5', upvotes: 4}
     ];
     $scope.addPost = function(){
-      $scope.posts.push({title: 'A new post!', upvotes: 0});
+      if(!$scope.title || $scope.title === '') { return; }
+      $scope.posts.push({
+        title: $scope.title,
+        link: $scope.link,
+        upvotes: 0
+      });
+      $scope.title = '';
+      $scope.link = '';
+    };
+    $scope.incrementUpvotes = function(post) {
+      post.upvotes += 1;
     };
   }
 ]);
